@@ -1,7 +1,7 @@
 fx_version 'adamant'
 games {'rdr3'}
 
-name 'User'
+name 'Outlawed Roleplay User'
 description 'RedM User creation and authentication resource.'
 author 'Ryan "Standal" Lockard'
 
@@ -10,7 +10,7 @@ client_scripts {
 }
 server_script {
   'dist/server/*.server.js',
-  -- '@mysql-async/lib/MySQL.lua',
+  '@mysql-async/lib/MySQL.lua',
   -- ...
 }
 
