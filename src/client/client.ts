@@ -1,17 +1,25 @@
-on('onClientResourceStart', () => {
+import { Delay } from "../util"
+
+on("onClientResourceStart", () => {
   // Show the entire RDR3 Map
-  Citizen.invokeNative('0x4B8F743A4A6D2FF8', true)
+  Citizen.invokeNative("0x4B8F743A4A6D2FF8", true)
 })
 
-let spawned = false
-setImmediate(() => {
-  while (!spawned) {
-    const isSpawned = NetworkIsPlayerActive( PlayerPedId() )
-    const isSpawned2: boolean = Citizen.invokeNative("0xB8DFD30D6973E135", PlayerPedId(), Citizen.resultAsInteger())
-    console.log(`isSpawned: ${isSpawned ? "yes" : "no"}`)
-    if (isSpawned2) {
-      emitNet("user:playerSpawned")
-      spawned = true
+// -- [ Loop checking for when a player becomes "ACTIVE" on the network. ] --
+let NetworkActive = false
+const NetworkTick = setTick(async () => {
+  while (!NetworkActive) {
+    const
+      playerPedId = PlayerPedId(),
+      playerId = NetworkGetPlayerIndexFromPed(playerPedId),
+      isNetworkActive = NetworkIsPlayerActive(playerId)
+
+    if (isNetworkActive) {
+      emitNet("user:networkActive")
+      global.exports['spawnmanager']['spawnPlayer']()
+      NetworkActive = true
+      clearTick(NetworkTick)
     }
+    await Delay(1000)
   }
 })
