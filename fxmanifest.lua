@@ -9,8 +9,8 @@ client_scripts {
   'dist/client/*.client.js',
 }
 server_script {
-  'dist/server/*.server.js',
   '@mysql-async/lib/MySQL.lua',
+  'dist/server/*.server.js',
   -- ...
 }
 
