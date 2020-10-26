@@ -1,9 +1,13 @@
-fx_version 'adamant'
+fx_version 'cerulean'
 games {'rdr3'}
 
 name 'Outlawed Roleplay User'
 description 'RedM User creation and authentication resource.'
 author 'Ryan "Standal" Lockard'
+
+dependencies {
+  'spawnmanager',
+}
 
 client_scripts {
   'dist/client/*.client.js',
