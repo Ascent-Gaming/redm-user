@@ -1,3 +1,9 @@
 {
-  "server_name": "Outlawed Roleplay"
+  "resource": {
+    "name": "User",
+    "version": "0.0.1"
+  },
+  "user": {
+    "serverName": "Outlawed Roleplay"
+  }
 }
