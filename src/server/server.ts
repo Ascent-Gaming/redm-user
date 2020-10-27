@@ -121,12 +121,21 @@ const onFetchUserExist = (playerId: string, response: []) => {
         "@steamId": user.steamId,
         "@ip": user.ip
       },
-      (res: number) => onInsertUser(playerId, res)
+      () => onInsertUser(playerId)
+    )
+  }
+
+  else {
+    const user = UserMap.get(playerId)
+
+    global.exports['mysql-async']['mysql_execute'](
+      "UPDATE user SET lastOn = NOW() WHERE steamId = @steamId",
+      {"@steamId": user.steamId}
     )
   }
 }
 
-const onInsertUser = (playerId: string, response: number) => {
+const onInsertUser = (playerId: string) => {
   emit("utilities:logServer", {
     level: "info",
     title: "User-Authentication",
