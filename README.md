@@ -1,13 +1,13 @@
-<h1 align="center">RedM User Resource</h1>
+<h1 align="center">RedM User</h1>
 
 <p align="center">
-  <i>RedM User creation and authentication resource.</i>
+  <i>RedM player authorization and management resource.</i>
   <br>
   <br>
   <a href="https://github.com/d0p3t/fivem-ts-boilerplate/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License: MIT">
   </a>
-  <a href="https://github.com/d0p3t/fivem-ts-boilerplate/commits/master">
+  <a href="https://github.com/Ascent-Gaming/redm-user/commits/master">
     <img src="https://img.shields.io/github/last-commit/Ascent-Gaming/redm-user.svg?style=flat" alt="Last commit">
   </a>
   <a href="">
@@ -17,7 +17,14 @@
 
 ## Overview
 
-This
+This resource offers authorization and managment capabilities for *players* connecting to a server.
+
+It currently provides the following:
+
+- **Authorization** using the `Steam` provider. Players must have Steam running in order to connect to the server.
+- **Management** in the form of keeping-track who connects to the server, under what IP, and when they last connected.
+- Provides a *foundation* for forming relationships between a player and various other, abstract, systems or resources.
+- `Events` for responding to a player's connection to the server.
 
 ## Dependencies
 
@@ -43,7 +50,7 @@ Against the database you configured when installing `mysql-async`, run the `user
 
 ### `user:networkActive` Event
 
-> This is both a `client` and `server` event.
+> This is a `client` to `client` and `server` event.
 
 An event fired once a player has fully connected to the *network*.
 
@@ -51,7 +58,7 @@ At this point, a player's ID (`global.source`) has been finalized for a player's
 
 ### `user:canSpawn` Event
 
-> This is a `client` event.
+> This is a `client` to `client` event.
 
 An event fired once a player can be safely spawned.
 
@@ -67,6 +74,7 @@ This includes the following fields:
 - `ip`
 - `createdOn` - Timestamp of when a record was initially *created*.
 - `updatedOn` - Timestamp tracking when a record is *updated*.
+- `lastOn` - Timestamp updated whenever a user *connects*.
 
 ## License
 This product is MIT licensed. Please make sure you give credit and include this license in your product.
