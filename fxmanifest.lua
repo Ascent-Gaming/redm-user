@@ -1,16 +1,20 @@
-fx_version 'adamant'
+fx_version 'cerulean'
 games {'rdr3'}
 
-name 'User'
+name 'Outlawed Roleplay User'
 description 'RedM User creation and authentication resource.'
 author 'Ryan "Standal" Lockard'
+
+dependencies {
+  'spawnmanager',
+}
 
 client_scripts {
   'dist/client/*.client.js',
 }
 server_script {
+  '@mysql-async/lib/MySQL.lua',
   'dist/server/*.server.js',
-  -- '@mysql-async/lib/MySQL.lua',
   -- ...
 }
 
