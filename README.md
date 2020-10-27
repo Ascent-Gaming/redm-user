@@ -1,7 +1,7 @@
 <h1 align="center">RedM User</h1>
 
 <p align="center">
-  <i>RedM player authorization and management resource.</i>
+  <i>RedM player authorization and management.</i>
   <br>
   <br>
   <a href="https://github.com/d0p3t/fivem-ts-boilerplate/blob/master/LICENSE">
