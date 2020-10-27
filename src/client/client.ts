@@ -12,13 +12,18 @@ on("onClientResourceStart", (resourceName: string) => {
 
 // -- [ Loop checking for when a player becomes "ACTIVE" on the network. ] --
 const networkActiveTick = setTick(async () => {
+  const
+    playerPedId = PlayerPedId(),
+    playerId = NetworkGetPlayerIndexFromPed(playerPedId)
+
   while (!User.NetworkActive) {
     const
-      playerPedId = PlayerPedId(),
-      playerId = NetworkGetPlayerIndexFromPed(playerPedId),
       isNetworkActive = NetworkIsPlayerActive(playerId)
 
     if (isNetworkActive) {
+      // Update the global User object
+      User.NetworkActive = true
+
       // Emit events to signal a user is activley connected to the network.
       const userActiveEvent: UserActivatedEvent = {
         playerPedId: playerPedId,
@@ -26,9 +31,6 @@ const networkActiveTick = setTick(async () => {
       }
       emitNet("user:networkActive", userActiveEvent)
       emit("user:networkActive", userActiveEvent)
-
-      // Update the global User object
-      User.NetworkActive = true
 
       // Cleanup
       clearTick(networkActiveTick)
@@ -38,6 +40,8 @@ const networkActiveTick = setTick(async () => {
 })
 
 on("user:networkActive", (event: UserActivatedEvent) => {
+  emit("user:canSpawn")
+
   DoScreenFadeIn(500)
   ShutdownLoadingScreen()
   SetEntityCoords(event.playerPedId, 1.505, 1015.63, 208.4088, false, false, false, true)
