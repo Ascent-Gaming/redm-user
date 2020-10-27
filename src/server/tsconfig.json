@@ -17,6 +17,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["./**/*"],
+  "include": ["./**/*", "../@types/*"],
   "exclude": ["**/node_modules", "**/__tests__/*"]
 }
