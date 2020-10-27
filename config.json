@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Ascent-Gaming/redm-user/config.schema/redm-user.schema.json",
   "resource": {
     "name": "User",
     "version": "0.0.1"
