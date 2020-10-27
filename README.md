@@ -56,6 +56,18 @@ An event fired once a player has fully connected to the *network*.
 
 At this point, a player's ID (`global.source`) has been finalized for a player's session.
 
+### `user:isClientNetworkActive` Callback
+
+> This is a `client` to `client` callback.
+
+Use this callback to recieve the `NetworkActive` status of a client.
+
+This callback expects an argument in the following form; adjust to match your perferred language:
+
+```TypeScript
+(isNetworkActive: boolean) => void
+```
+
 ### `user:canSpawn` Event
 
 > This is a `client` to `client` event.
