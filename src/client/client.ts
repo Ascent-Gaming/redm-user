@@ -40,11 +40,5 @@ const networkActiveTick = setTick(async () => {
 })
 
 on("user:networkActive", (event: UserActivatedEvent) => {
-  emit("user:canSpawn")
-
-  // TEMP
-  DoScreenFadeIn(500)
-  ShutdownLoadingScreen()
-  SetEntityCoords(event.playerPedId, 1.505, 1015.63, 208.4088, false, false, false, true)
-  FreezeEntityPosition(event.playerPedId, false)
+  emit("user:canSpawn", event)
 })
