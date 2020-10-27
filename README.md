@@ -56,17 +56,30 @@ An event fired once a player has fully connected to the *network*.
 
 At this point, a player's ID (`global.source`) has been finalized for a player's session.
 
-### `user:isClientNetworkActive` Callback
+### `user:isNetworkActive` Callback
 
-> This is a `client` to `client` callback.
+> This is a `client` to `client` and `server` to `server` callback.
 
 Use this callback to recieve the `NetworkActive` status of a client.
 
-This callback expects an argument in the following form; adjust to match your perferred language:
+When using the **`client`** callback, it will expect an argument in the following form:
 
 ```TypeScript
-(isNetworkActive: boolean) => void
+emit("user:isNetworkActive", (isNetworkActive: boolean) => void)
 ```
+
+The **`server`** callback will expect an argument like the following.
+
+In the event `playerSrc` is invalid (no information is stored by the server), `isNetworkActive` will be returned as `-1`.
+
+```TypeScript
+/**
+ * Where "playerSrc" is the value returned by `global.source`
+ */
+emit("user:isNetworkActive", playerSrc, (isNetworkActive: boolean) => void)
+```
+
+You can adjust these to match your perferred language.
 
 ### `user:canSpawn` Event
 
