@@ -43,6 +43,6 @@ on("user:networkActive", (event: UserActivatedEvent) => {
   emit("user:canSpawn", event)
 })
 
-on("user:isClientNetworkActive", (callback: (isNetworkActive: boolean) => void) => {
+on("user:isNetworkActive", (callback: (isNetworkActive: boolean) => void) => {
   callback.call(this, User.NetworkActive)
 })
