@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "software.locktech.redm-user.schema",
+  "title": "RedM User",
+  "type": "object",
+  "definitions": {
+  },
+  "allOf": [{ "$ref": "https://raw.githubusercontent.com/Ascent-Gaming/redm-ts-boilerplate/config.schema/redm-ts-boilerplate.schema.json" }],
+  "properties": {
+    "user": {
+      "title": "User",
+      "description": "Configuration specific to the User resource.",
+      "type": "object",
+      "required": ["serverName"],
+      "properties": {
+        "serverName": {
+          "title": "Server Name", 
+          "description": "The name of your Server to be displayed when deferring the player.",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "user"
+  ]
+}
