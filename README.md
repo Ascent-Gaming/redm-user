@@ -56,11 +56,22 @@ An event fired once a player has fully connected to the *network*.
 
 At this point, a player's ID (`global.source`) has been finalized for a player's session.
 
+The following `event` argument is passed to handlers that subscribe to this event:
+
+```TypeScript
+type UserActivatedEvent = {
+  playerPedId: number
+  playerId: number
+}
+```
+
 ### `user:canSpawn` Event
 
 > This is a `client` to `client` event.
 
 An event fired once a player can be safely spawned.
+
+This event does not pass any arguments.
 
 ***Note: Restarting the `user` resource will cause this event to fire; you should pragmatically account for this when handling the event.***
 
