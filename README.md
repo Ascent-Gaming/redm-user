@@ -65,6 +65,31 @@ type UserActivatedEvent = {
 }
 ```
 
+### `user:isNetworkActive` Callback
+
+> This is a `client` to `client` and `server` to `server` callback.
+
+Use this callback to recieve the `NetworkActive` status of a client.
+
+When using the **`client`** callback, it will expect an argument in the following form:
+
+```TypeScript
+emit("user:isNetworkActive", (isNetworkActive: boolean) => void)
+```
+
+The **`server`** callback will expect an argument like the following.
+
+In the event `playerSrc` is invalid (no information is stored by the server), `isNetworkActive` will be returned as `-1`.
+
+```TypeScript
+/**
+ * Where "playerSrc" is the value returned by `global.source`
+ */
+emit("user:isNetworkActive", playerSrc, (isNetworkActive: boolean) => void)
+```
+
+You can adjust these to match your perferred language.
+
 ### `user:canSpawn` Event
 
 > This is a `client` to `client` event.

@@ -92,6 +92,7 @@ onNet("user:networkActive", (event: UserActivatedEvent) => {
   }
 
   UserMap.set(player, {
+    networkActive: true,
     steamId: steamIdentifier,
     ip: ipAddress
   })
@@ -142,3 +143,13 @@ const onInsertUser = (playerId: string) => {
     output: `New USER created in DB. SteamID: ${UserMap.get(playerId).steamId}`
   })
 }
+
+on("user:isNetworkActive", (playerSrc, callback: (isNetworkActive: boolean) => void) => {
+  if (UserMap.has(playerSrc)) {
+    callback.call(this, UserMap.get(playerSrc).networkActive)
+  }
+
+  else {
+    callback.call(this, -1)
+  }
+})
